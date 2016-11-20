@@ -1,20 +1,39 @@
 'use strict';
 
 let paper = Snap(800, 400),
-
+bodyX = 70,
+bodyY = 100,
+bodyH = 50,
+bodyW = 70,
+towerX = bodyX + (bodyH / 2),
+towerY = bodyY + (bodyW / 2),
 style = {
   fill: 'transparent',
   stroke: '#222',
-  strokeWidth: 5
+  strokeWidth: 1
 },
-/**
- * @param M - move cursore X, Y
- * @param A - 7 Обязательных аргументов
- * 1,2 - Радиусы для описания к каждому фокусу эллипса
- * 3 - Угол поворота оси Х
- * 4,5 - Комбинации параметров для описания типа дуги от произвольной точки относительно двух пересекающихся окружностей
- * 6,7 - Координаты конца дуги.
- */
-path = paper
-  .path("M 100,100 A100,50,0,0,0,500,200")
-  .attr(style);
+body = paper
+  .rect(bodyX, bodyY, bodyH, bodyW)
+  .attr(style),
+head = paper
+  .circle(towerX, towerY, 10)
+  .attr(style),
+gun = paper
+  .path(`M${towerX},${towerY - 10}L${towerX},${towerY - 20}`)
+  .attr(style),
+tower = paper.g(head, gun),
+tank = paper.g(body, tower)
+
+let i = 0;
+
+// setInterval(() => {
+//   i += 1;
+//   tank.transform(`t${i}r${i}`);
+//   if (i === 360) {
+//     i = 0;
+//   }
+// }, 1)
+  // .drag(function(dx) {
+  //   console.log(dx);
+    // this.transform(`r${dx/10}`);
+  // })
