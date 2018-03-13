@@ -1,25 +1,25 @@
 'use strict';
 
-let paper = Snap(800, 400),
+let paper = Snap(800, 400)
 
-style = {
-  fill: '#387',
-  stroke: '#fff',
-  strokeWidth: 5
-},
+  , style = {
+    fill: '#387',
+    stroke: '#fff',
+    strokeWidth: 5
+  }
 
-path = paper
-  .path("")
-  .attr({
-    stroke: "#387",
-    fill: "transparent",
-    strokeWidth: 3
-  }),
-pathArray = [];
+  , path = paper
+    .path("")
+    .attr({
+      stroke: "#387",
+      fill: "transparent",
+      strokeWidth: 3
+    })
+  , pathArray = [];
 
 function updatePath() {
-  let first = pathArray[0],
-  pathString = `M${first.x},${first.y}`;
+  let first = pathArray[0]
+    , pathString = `M${first.x},${first.y}`;
   for (let node = 1; node <= pathArray.slice(1).length; node++) {
     pathString += `T${pathArray[node].x},${pathArray[node].y}`
   }
